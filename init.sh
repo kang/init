@@ -22,6 +22,3 @@ fancy_echo "Installing zsh ..."
 
 fancy_echo "Installing node ..."
   sudo apt-get install nodejs
-
-fancy_echo "Changing your shell to zsh ..."
-  chsh -s $(which zsh)
