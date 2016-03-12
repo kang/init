@@ -89,29 +89,3 @@ fancy_echo "Installing node ..."
 
 fancy_echo "Changing your shell to zsh ..."
   chsh -s $(which zsh)
-
-silver_searcher_from_source() {
-  git clone git://github.com/ggreer/the_silver_searcher.git /tmp/the_silver_searcher
-  sudo aptitude install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
-  sh /tmp/the_silver_searcher/build.sh
-  cd /tmp/the_silver_searcher
-  sh build.sh
-  sudo make install
-  cd
-  rm -rf /tmp/the_silver_searcher
-}
-
-if ! command -v ag >/dev/null; then
-  fancy_echo "Installing The Silver Searcher (better than ack or grep) to search the contents of files ..."
-
-  if aptitude show silversearcher-ag &>/dev/null; then
-    install_if_needed silversearcher-ag
-  else
-    silver_searcher_from_source
-  fi
-fi
-
-fancy_echo "Installing rcm, to manage your dotfiles ..."
-  wget -O /tmp/rcm_1.2.3-1_all.deb https://thoughtbot.github.io/rcm/debs/rcm_1.2.3-1_all.deb
-  sudo dpkg -i /tmp/rcm_1.2.3-1_all.deb
-  rm -f /tmp/rcm_1.2.3-1_all.deb
